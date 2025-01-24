@@ -13,7 +13,6 @@ class SpellProvider with ChangeNotifier {
   SpellProvider() {
     _loadFavoriteSpells();
   }
-
   List<Spell> get spells => _filteredSpells.isNotEmpty ? _filteredSpells : _spells;
   List<Spell> get favoriteSpells => _favoriteSpells;
 
@@ -76,11 +75,9 @@ class SpellProvider with ChangeNotifier {
       _favoriteSpells.add(spell);
       spell.isFavorite = true;
     }
-
     await _saveFavoriteSpells();
     notifyListeners();
   }
-
   Future<void> _loadFavoriteSpells() async {
     final prefs = await SharedPreferences.getInstance();
     final favoriteSpellsData = prefs.getStringList('favoriteSpells') ?? [];
